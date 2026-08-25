@@ -20,5 +20,21 @@ namespace ToDoApplication.Helper
             string passwordPattern = @"^(?=.*[A-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9]).+$";
             return Regex.IsMatch(password, passwordPattern);
         }
+
+        public static bool IsDateValid(string date)
+        {
+            return DateOnly.TryParse(date, out var validDate) && validDate > DateOnly.FromDateTime(DateTime.Now);
+        }
+
+        internal static bool IslogoutValid(string choice)
+        {
+            if (string.IsNullOrWhiteSpace(choice) || choice.Length != 1)
+            {
+                return false;
+            }
+
+            return choice.Equals("n", StringComparison.OrdinalIgnoreCase) ||
+                     choice.Equals("y", StringComparison.OrdinalIgnoreCase);
+        }
     }
 }

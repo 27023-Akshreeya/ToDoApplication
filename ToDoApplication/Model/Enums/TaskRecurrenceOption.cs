@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace ToDoApplication.Model.Enums
 {
-    public enum MenuOptions
+    public enum TaskRecurrenceOption
     {
-        AddToDo = 1,
-        UpdateToDo,
-        ViewAllToDo,
-        ViewByCalender,
-        Logout,
+        None = 1,
+        Daily,
+        Weekly,
+        Monthly ,
+        Yearly,
     }
 }
