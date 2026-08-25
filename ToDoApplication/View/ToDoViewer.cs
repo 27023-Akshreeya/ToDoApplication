@@ -325,7 +325,7 @@ namespace ToDoApplication.View
                 case TaskRecurrenceOption.Daily:
                     var repeatDaily = GetInputWithAttempts("How many days do you want the task to repeat? ", input => int.TryParse(input, out int _), "Invalid times!");
                     todolist.Add(new ToDoTask(heading, description, targetDate, "daily", UserAuthenticatorService.GetCurrentUser(), DateTime.Now, status, Guid.NewGuid()));
-                    for (int repeat = 0; repeat < int.Parse(repeatDaily); repeat++)
+                    for (int repeat = 1; repeat < int.Parse(repeatDaily); repeat++)
                     {
                         targetDate = targetDate.AddDays(1);
                         todolist.Add(new ToDoTask(heading, description, targetDate, "daily", UserAuthenticatorService.GetCurrentUser(), DateTime.Now, status, Guid.NewGuid()));
@@ -334,7 +334,7 @@ namespace ToDoApplication.View
                 case TaskRecurrenceOption.Weekly:
                     todolist.Add(new ToDoTask(heading, description, targetDate, "weekly", UserAuthenticatorService.GetCurrentUser(), DateTime.Now, status, Guid.NewGuid()));
                     var repeatMonthly = GetInputWithAttempts("How many weeks do you want the task to repeat? ", input => int.TryParse(input, out int _), "Invalid times!");
-                    for (int repeat = 0; repeat < int.Parse(repeatMonthly); repeat++)
+                    for (int repeat = 1; repeat < int.Parse(repeatMonthly); repeat++)
                     {
                         targetDate = targetDate.AddDays(7);
                         todolist.Add(new ToDoTask(heading, description, targetDate, "weekly", UserAuthenticatorService.GetCurrentUser(), DateTime.Now, status, Guid.NewGuid()));
@@ -343,7 +343,7 @@ namespace ToDoApplication.View
                 case TaskRecurrenceOption.Monthly:
                     var repeatMonths = GetInputWithAttempts("How many months do you want the task to repeat? ", input => int.TryParse(input, out int _), "Invalid times!");
                     todolist.Add(new ToDoTask(heading, description, targetDate, "Monthly", UserAuthenticatorService.GetCurrentUser(), DateTime.Now, status, Guid.NewGuid()));
-                    for (int repeat = 0; repeat < int.Parse(repeatMonths); repeat++)
+                    for (int repeat = 1; repeat < int.Parse(repeatMonths); repeat++)
                     {
                         targetDate = targetDate.AddMonths(1);
                         todolist.Add(new ToDoTask(heading, description, targetDate, "Monthly", UserAuthenticatorService.GetCurrentUser(), DateTime.Now, status, Guid.NewGuid()));
@@ -352,7 +352,7 @@ namespace ToDoApplication.View
                 case TaskRecurrenceOption.Yearly:
                     var repeatYearly = GetInputWithAttempts("How many days do you want the task to repeat? ", input => int.TryParse(input, out int _), "Invalid times!");
                     todolist.Add(new ToDoTask(heading, description, targetDate, "yearly", UserAuthenticatorService.GetCurrentUser(), DateTime.Now, status, Guid.NewGuid()));
-                    for (int repeat = 0; repeat < int.Parse(repeatYearly); repeat++)
+                    for (int repeat = 1; repeat < int.Parse(repeatYearly); repeat++)
                     {
                         targetDate = targetDate.AddYears(1);
                         todolist.Add(new ToDoTask(heading, description, targetDate, "yearly", UserAuthenticatorService.GetCurrentUser(), DateTime.Now, status, Guid.NewGuid()));
