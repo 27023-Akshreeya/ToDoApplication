@@ -362,11 +362,6 @@ namespace ToDoApplication.View
             return null;
         }
 
-        public void Menu()
-        {
-
-        }
-
         public string GetInputWithAttempts(string input, InputValidator validator, string invalidMessage)
         {
             for (int tries = 3; tries > 0; tries--)
