@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ToDoApplication.Helper;
 using ToDoApplication.Model;
+using ToDoApplication.Model.Enums;
 using ToDoApplication.Service;
 
 namespace ToDoApplication.View
@@ -14,13 +15,11 @@ namespace ToDoApplication.View
     {
         private readonly UserService _userService;
         private readonly TaskService _taskService;
-        private readonly UserAuthenticatorService _userAuthenticatorService;
 
-        public ToDoViewer(UserService userService, TaskService taskService, UserAuthenticatorService userAuthenticatorService)
+        public ToDoViewer(UserService userService, TaskService taskService)
         {
             this._userService = userService;
             this._taskService = taskService;
-            this._userAuthenticatorService = userAuthenticatorService;
         }
 
         public void Login()
@@ -46,7 +45,7 @@ namespace ToDoApplication.View
                         break;
                     }
 
-                    this._userAuthenticatorService.SetCurrentUser(userID);
+                    UserAuthenticatorService.SetCurrentUser(userID);
                     this.DisplayDashboard();
                     isLoginSuccess = true;
                     break;
@@ -69,14 +68,36 @@ namespace ToDoApplication.View
                 {
                     return;
                 }
-                this._userService.AddNewUser(new User(userName, password, Guid.NewGuid(), employeeId));
+                if(this._userService.AddNewUser(new User(userName, password, Guid.NewGuid(), employeeId)))
+                {
+                    this.DisplaySuccess("User added successfully!");
+                }
+
             }
 
         }
 
         private void DisplayDashboard()
         {
-            Console.WriteLine("dashboard");
+            Console.Clear();
+            var userDetails = this._userService.GetUserDetails(UserAuthenticatorService.GetCurrentUser());
+            Console.WriteLine($"User details\nUser Name:{userDetails.UserName}\nUser ID: {userDetails.UserID}\nEmployee ID:{userDetails.EmployeeId}");
+            Console.WriteLine("Recent todo:");
+            Console.WriteLine("Main Menu\n1.Add new ToDo\n2.Update Todo\n3.View All Todo\n4.Logout\nEnter your choice:");
+            string choice = this.GetInputWithAttempts("Enter your choice:", input => int.TryParse(input, out int _), "Invalid Choice");
+            if (choice.Equals(string.Empty))
+            {
+                return;
+            }
+            int.TryParse(choice, out int resultChoice);
+            switch ((MenuOptions)resultChoice)
+            {
+                case MenuOptions.AddToDo:
+                    break;
+                case MenuOptions.UpdateToDo: break;
+                case MenuOptions.ViewAllToDo: break;
+                case MenuOptions.Logout: break;
+            }
         }
 
         public void Menu()

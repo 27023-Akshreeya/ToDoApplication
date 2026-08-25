@@ -27,9 +27,21 @@ namespace ToDoApplication.Service
             return users.Single(u => u.UserID.Equals(currentUserID)).Password.Equals(loginPassword);
         }
 
-        public void AddNewUser(User user)
+        public bool AddNewUser(User user)
         {
+            if (user is null)
+            {
+                return false;
+            }
+
             this._userRepository.AddUser(user);
+            return true;
+        }
+
+        public User GetUserDetails(Guid guid)
+        {
+            var users = _userRepository.GetUsers();
+            return users.First(u => u.UserID.Equals(guid));
         }
     }
 }

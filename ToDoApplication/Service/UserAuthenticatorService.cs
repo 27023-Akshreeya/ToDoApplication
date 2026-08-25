@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace ToDoApplication.Service
 {
-    public class UserAuthenticatorService
+    public static class UserAuthenticatorService
     {
-        private Guid CurrentUser { get; set; }
-        public void SetCurrentUser(Guid userID)
+        private static Guid CurrentUser { get; set; }
+        public static void SetCurrentUser(Guid userID)
         {
-            this.CurrentUser = userID;
+            CurrentUser = userID;
         }
 
-        public Guid GetCurrentUser() => this.CurrentUser;
+        public static Guid GetCurrentUser() => CurrentUser;
     }
 }

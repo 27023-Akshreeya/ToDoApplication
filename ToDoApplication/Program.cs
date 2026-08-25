@@ -14,8 +14,7 @@ namespace ToDoApplication
                 var taskRepository = new TasksRepository("Tasks.json");
                 var userService = new UserService(userRepository);
                 var taskService = new TaskService(taskRepository);
-                var userAuthenticatorService = new UserAuthenticatorService();
-                var viewer = new ToDoViewer(userService, taskService, userAuthenticatorService);
+                var viewer = new ToDoViewer(userService, taskService);
                 viewer.Login();
             }
             catch (Exception ex)
