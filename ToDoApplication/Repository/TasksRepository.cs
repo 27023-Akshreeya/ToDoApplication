@@ -49,6 +49,16 @@ namespace ToDoApplication.Repository
             }
         }
 
+        internal void DeleteTask(Guid taskID)
+        {
+            var tasks = this.GetTasks().ToList();
+            var updatetask = tasks.First(u => u.TaskId == taskID);
+            tasks.Remove(updatetask);
+            var options = new JsonSerializerOptions { WriteIndented = true };
+            string updatedTask = JsonSerializer.Serialize(tasks, options);
+            File.WriteAllText(_filePath, updatedTask);
+        }
+
         internal void Update((string, UpdateOperation, Guid) details)
         {
             var tasks = this.GetTasks().ToList();

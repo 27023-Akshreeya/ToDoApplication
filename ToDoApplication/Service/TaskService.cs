@@ -29,6 +29,11 @@ namespace ToDoApplication.Service
             return true;
         }
 
+        internal void DeleteToDo(Guid taskID)
+        {
+            this._tasksRepository.DeleteTask(taskID);
+        }
+
         internal IEnumerable<ToDoTask> GetRecentToDo()
         {
             var userTodo = GetUserToDo();

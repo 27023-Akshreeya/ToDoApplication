@@ -86,7 +86,7 @@ namespace ToDoApplication.View
                 var userDetails = this._userService.GetUserDetails(UserAuthenticatorService.GetCurrentUser());
                 Console.WriteLine($"User details\nUser Name:{userDetails.UserName}\nUser ID: {userDetails.UserID}\nEmployee ID:{userDetails.EmployeeId}\n");
                 ViewRecentTodo();
-                Console.WriteLine("\nMain Menu\n1.Add new ToDo\n2.Update Todo\n3.View All Todo\n4.View to do by time period\n5.Logout\n");
+                Console.WriteLine("\nMain Menu\n1.Add new ToDo\n2.Update Todo\n3.View All Todo\n4.View to do by time period\n5.Delete Task\n6.Logout\n");
                 string choice = this.GetInputWithAttempts("Enter your choice:", input => int.TryParse(input, out int _), "Invalid Choice");
                 if (choice.Equals(string.Empty))
                 {
@@ -99,7 +99,7 @@ namespace ToDoApplication.View
                         var newTask = GetTaskDetails();
                         if (newTask is null)
                         {
-                            return;
+                            break;
                         }
 
                         this._taskService.AddNewTask(newTask);
@@ -120,6 +120,18 @@ namespace ToDoApplication.View
                         continue;
                     case MenuOptions.ViewAllToDo:
                         ViewUserToDo();
+                        continue;
+                    case MenuOptions.DeleteToDo:
+                        this.ViewUserToDo();
+                        string inputID = GetInputWithAttempts("Enter task id to Delete: ", input => Guid.TryParse(input, out Guid _), "Invalid task ID");
+                        if (inputID == string.Empty)
+                        {
+                            break;
+                        }
+
+                        var TaskID = Guid.Parse(inputID);
+                        this._taskService.DeleteToDo(TaskID);
+                        this.DisplaySuccess("deleted");
                         continue;
                     case MenuOptions.Logout:
                         logout = GetInputWithAttempts("Are you sure you want to log out? [y/n]:", Validator.IslogoutValid, "invalid choice").Equals("y");

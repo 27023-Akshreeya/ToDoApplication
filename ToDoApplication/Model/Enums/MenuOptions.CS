@@ -12,6 +12,7 @@ namespace ToDoApplication.Model.Enums
         UpdateToDo,
         ViewAllToDo,
         ViewByCalender,
+        DeleteToDo,
         Logout,
     }
 }
