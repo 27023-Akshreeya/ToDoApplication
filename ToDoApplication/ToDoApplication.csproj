@@ -8,10 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Helper\" />
-    <Folder Include="View\" />
-    <Folder Include="Repository\" />
-    <Folder Include="Service\" />
+    <Folder Include="Model\Enums\" />
   </ItemGroup>
 
 </Project>
