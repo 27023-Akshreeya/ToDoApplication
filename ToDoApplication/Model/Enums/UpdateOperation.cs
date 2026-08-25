@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace ToDoApplication.Model.Enums
 {
-    public enum MenuOptions
+    public enum UpdateOperation
     {
-        AddToDo = 1,
-        UpdateToDo,
-        ViewAllToDo,
-        ViewByCalender,
-        Logout,
+        Heading = 1,
+        description,
+        targetdate,
+        status,
+        invalid,
     }
 }
