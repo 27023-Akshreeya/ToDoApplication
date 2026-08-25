@@ -7,11 +7,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Helper\" />
-    <Folder Include="View\" />
-    <Folder Include="Repository\" />
-    <Folder Include="Service\" />
-  </ItemGroup>
-
 </Project>
